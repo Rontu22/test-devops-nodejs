@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Health</title>
+  </head>
+  <body>
+    <h1>System Health</h1>
+    <p id="os-info"></p>
+    <p id="cpu-info"></p>
+    <p id="memory-info"></p>
+    <img id="cpu-chart" src="" alt="CPU Load" />
+    <img id="memory-chart" src="" alt="Memory Usage" />
+
+    <script>
+      const osInfo = document.getElementById("os-info");
+      const cpuInfo = document.getElementById("cpu-info");
+      const memoryInfo = document.getElementById("memory-info");
+      const cpuChart = document.getElementById("cpu-chart");
+      const memoryChart = document.getElementById("memory-chart");
+
+      const eventSource = new EventSource("/health");
+
+      eventSource.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+
+        osInfo.textContent = `OS: ${data.os}`;
+        cpuInfo.textContent = `CPU: ${data.cpu}`;
+        memoryInfo.textContent = `Memory: ${data.memory}`;
+
+        cpuChart.src = data.cpuChartUrl;
+        memoryChart.src = data.memChartUrl;
+      };
+    </script>
+  </body>
+</html>
