@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: nodejs-devopsified
-          image: rontu22/test-devops-nodejs:{{ .Values.image.tag }}
+          image: rontu22/test-devops-nodejs:v2
           ports:
             - containerPort: 3000
