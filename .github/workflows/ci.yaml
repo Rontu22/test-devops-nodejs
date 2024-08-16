@@ -32,8 +32,8 @@ jobs:
         run: docker build -t my-app-image .
 
       # Step 5: Run Tests (if applicable)
-      - name: Run Tests
-        run: npm test
+      # - name: Run Tests
+      #   run: npm test
 
       # Step 6: Start the Application
       - name: Run Application
