@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-devopsified-deployment
+  labels:
+    app: nodejs-devopsified-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-devopsified-deployment
+  template:
+    metadata:
+      labels:
+        app: nodejs-devopsified-deployment
+    spec:
+      containers:
+        - name: nodejs-devopsified
+          image: rontu22/test-devops-nodejs:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 3000
